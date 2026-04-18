@@ -130,7 +130,10 @@
     .goog-tooltip { display: none !important; }
     .goog-tooltip:hover { display: none !important; }
     .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
-    #google_translate_element { display: none !important; }
+    #google_translate_element { opacity: 0; width: 0; height: 0; position: absolute; overflow: hidden; top: -1000px; display: block !important; }
+    .goog-te-balloon-frame { display: none !important; }
+    .VIpgJd-Zvi9od-aZ2wEe-wOHMyf { display: none !important; }
+    .VIpgJd-yAWNEb-VIpgJd-fmcmS-snQNfc { display: none !important; }
 
     /* ── HERO ── */
     .hero {
@@ -484,7 +487,45 @@
     .benefit-icon {
       font-size: 2.5rem;
       margin-bottom: 16px;
+      display: inline-block;
+      transition: all 0.3s ease-in-out;
     }
+
+    @keyframes cropGrow {
+      0% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.2) rotate(5deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+    @keyframes waterDrop {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px) scaleY(1.05); }
+    }
+    @keyframes pulseMicro {
+      0% { transform: scale(1); filter: brightness(1); }
+      50% { transform: scale(1.15); filter: brightness(1.2); }
+      100% { transform: scale(1); filter: brightness(1); }
+    }
+    @keyframes floatingShield {
+      0%, 100% { transform: translateX(0) rotate(0deg); }
+      25% { transform: translateX(-5px) rotate(-5deg); }
+      75% { transform: translateX(5px) rotate(5deg); }
+    }
+    @keyframes flexMuscle {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.1) rotate(15deg); }
+      75% { transform: scale(1.1) rotate(-15deg); }
+    }
+    @keyframes ecoSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .benefit-card:nth-child(1):hover .benefit-icon { animation: cropGrow 0.6s ease-in-out infinite; }
+    .benefit-card:nth-child(2):hover .benefit-icon { animation: waterDrop 0.8s ease-in-out infinite; }
+    .benefit-card:nth-child(3):hover .benefit-icon { animation: pulseMicro 1s ease-in-out infinite; }
+    .benefit-card:nth-child(4):hover .benefit-icon { animation: floatingShield 1s ease-in-out infinite; }
+    .benefit-card:nth-child(5):hover .benefit-icon { animation: flexMuscle 0.6s ease-in-out infinite; }
+    .benefit-card:nth-child(6):hover .benefit-icon { animation: ecoSpin 1.5s linear infinite; }
 
     .benefit-card h3 {
       font-family: 'Playfair Display', serif;
@@ -1006,11 +1047,24 @@
 
     @media (max-width: 600px) {
       nav {
-        padding: 14px 5%;
+        position: relative;
+        padding: 15px 5%;
+        flex-direction: column;
+        gap: 15px;
+        background: var(--cream);
+      }
+
+      nav > div:nth-child(2) {
+        flex-direction: column-reverse !important;
+        gap: 15px !important;
       }
 
       .nav-links {
-        display: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
       }
 
       .stats-band,
@@ -1063,7 +1117,6 @@
         fertilizer for extraordinary yields.</p>
       <div class="hero-btns">
         <a href="#products" class="btn-primary">Explore Products</a>
-        <a href="#contact" class="btn-secondary">Get a Quote</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -1096,10 +1149,6 @@
     <div class="about-grid">
       <div class="about-img-block">
         <div class="about-img-main">🌿</div>
-        <div class="about-badge-float">
-          <span>Est.</span>
-          Since Day 1
-        </div>
       </div>
       <div>
         <span class="section-label">Our Story</span>
@@ -1177,8 +1226,7 @@
     </div>
     <div class="products-grid">
       <div class="product-card">
-        <div class="product-img moss">
-          🌱
+        <div class="product-img moss" style="background-image: url('assets/home_garden_pack.png'); background-size: cover; background-position: center;">
           <span class="product-tag">POPULAR</span>
         </div>
         <div class="product-body">
@@ -1190,8 +1238,7 @@
         </div>
       </div>
       <div class="product-card">
-        <div class="product-img gold">
-          🌿
+        <div class="product-img gold" style="background-image: url('assets/farm_pack.png'); background-size: cover; background-position: center;">
           <span class="product-tag">BEST VALUE</span>
         </div>
         <div class="product-body">
@@ -1203,8 +1250,7 @@
         </div>
       </div>
       <div class="product-card">
-        <div class="product-img earth">
-          🏭
+        <div class="product-img earth" style="background-image: url('assets/bulk_wholesale.png'); background-size: cover; background-position: center;">
         </div>
         <div class="product-body">
           <h3>Bulk / Wholesale</h3>
@@ -1227,28 +1273,22 @@
         farmers.</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item">
-        🪱
+      <div class="gallery-item" style="background-image: url('assets/gallery_beds.png'); background-size: cover; background-position: center;">
         <div class="gallery-overlay"><span class="gallery-label">Vermiculture Beds</span></div>
       </div>
-      <div class="gallery-item">
-        🌱
+      <div class="gallery-item" style="background-image: url('assets/gallery_seedling.png'); background-size: cover; background-position: center;">
         <div class="gallery-overlay"><span class="gallery-label">Seedling Growth</span></div>
       </div>
-      <div class="gallery-item">
-        📦
+      <div class="gallery-item" style="background-image: url('assets/gallery_packaging.png'); background-size: cover; background-position: center;">
         <div class="gallery-overlay"><span class="gallery-label">Packaging Unit</span></div>
       </div>
-      <div class="gallery-item">
-        🌾
+      <div class="gallery-item" style="background-image: url('assets/gallery_fields.png'); background-size: cover; background-position: center;">
         <div class="gallery-overlay"><span class="gallery-label">Paddy Fields</span></div>
       </div>
-      <div class="gallery-item">
-        🧪
+      <div class="gallery-item" style="background-image: url('assets/gallery_testing.png'); background-size: cover; background-position: center;">
         <div class="gallery-overlay"><span class="gallery-label">Quality Testing</span></div>
       </div>
-      <div class="gallery-item">
-        🌿
+      <div class="gallery-item" style="background-image: url('assets/gallery_farm.png'); background-size: cover; background-position: center;">
         <div class="gallery-overlay"><span class="gallery-label">Organic Farm</span></div>
       </div>
     </div>
@@ -1362,7 +1402,15 @@
           <div class="contact-icon">📍</div>
           <div>
             <h4>Farm Address</h4>
-            <p>Fauji Agro Enterprise<br>Village - Dahina District - Rewari, State - Haryana– PIN</p>
+            <p>Fauji Agro Enterprise<br>Village - Dahina District - Rewari, State - Haryana<br>
+            <a href="https://maps.app.goo.gl/HJz2N5p7yGizjCfv9" target="_blank" style="color: var(--moss); font-weight: 600; text-decoration: none; margin-top: 6px; display: inline-block;">🗺️ View on Google Maps</a></p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">📄</div>
+          <div>
+            <h4>GST Number</h4>
+            <p style="font-weight: 600;">06ASUPK4450E1ZM</p>
           </div>
         </div>
       </div>
@@ -1413,6 +1461,7 @@
         <div class="logo">Fauji <span style="color:var(--gold)">Agro</span></div>
         <p>Premium vermicompost produced with discipline and care. Helping India's farmers grow healthier crops,
           naturally.</p>
+        <p style="margin-top: 15px; font-weight: bold; color: var(--gold);">GST No: 06ASUPK4450E1ZM</p>
       </div>
       <div class="footer-col">
         <h4>Quick Links</h4>
@@ -1457,7 +1506,15 @@
       var selectField = document.querySelector(".goog-te-combo");
       if (selectField) {
         selectField.value = lang;
-        selectField.dispatchEvent(new Event('change'));
+        if (typeof Event === 'function') {
+           selectField.dispatchEvent(new Event('change'));
+        } else {
+           var customEvent = document.createEvent('HTMLEvents');
+           customEvent.initEvent('change', true, true);
+           selectField.dispatchEvent(customEvent);
+        }
+      } else {
+        setTimeout(function() { changeLanguage(lang, btn); }, 500);
       }
     }
   </script>
