@@ -1415,25 +1415,25 @@
         </div>
       </div>
 
-      <div class="contact-form">
+      <form class="contact-form" id="orderForm">
         <div class="form-row">
           <div class="form-group">
             <label>Full Name</label>
-            <input type="text" placeholder="Your name">
+            <input type="text" id="fullName" required placeholder="Your name">
           </div>
           <div class="form-group">
             <label>Phone Number</label>
-            <input type="tel" placeholder="+91 XXXXX XXXXX">
+            <input type="tel" id="phone" required placeholder="+91 XXXXX XXXXX">
           </div>
         </div>
         <div class="form-group">
           <label>Email Address</label>
-          <input type="email" placeholder="your@email.com">
+          <input type="email" id="email" required placeholder="your@email.com">
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Product Interest</label>
-            <select>
+            <select id="productInterest" required>
               <option>Home Garden Pack (5 kg)</option>
               <option>Farm Pack (50 kg)</option>
               <option>Bulk / Wholesale</option>
@@ -1442,15 +1442,16 @@
           </div>
           <div class="form-group">
             <label>Quantity</label>
-            <input type="text" placeholder="e.g. 10 bags / 500 kg">
+            <input type="text" id="quantity" required placeholder="e.g. 10 bags / 500 kg">
           </div>
         </div>
         <div class="form-group">
           <label>Message</label>
-          <textarea placeholder="Tell us about your farm, crop type, or any questions…"></textarea>
+          <textarea id="message" placeholder="Tell us about your farm, crop type, or any questions…"></textarea>
         </div>
-        <button class="btn-submit">Send Enquiry 🌱</button>
-      </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Send Enquiry 🌱</button>
+        <p id="formStatus" style="font-size: 0.9rem; font-weight: bold; margin-top: 10px;"></p>
+      </form>
     </div>
   </section>
 
@@ -1520,6 +1521,51 @@
   </script>
   <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+  <script>
+    document.getElementById('orderForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const statusText = document.getElementById('formStatus');
+      
+      submitBtn.innerText = 'Sending...';
+      submitBtn.disabled = true;
+      
+      const orderData = {
+        fullName: document.getElementById('fullName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        productInterest: document.getElementById('productInterest').value,
+        quantity: document.getElementById('quantity').value,
+        message: document.getElementById('message').value
+      };
+
+      try {
+        const response = await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderData)
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          statusText.style.color = 'var(--moss)';
+          statusText.innerText = result.message;
+          document.getElementById('orderForm').reset();
+        } else {
+          statusText.style.color = 'red';
+          statusText.innerText = result.error || 'An error occurred.';
+        }
+      } catch (err) {
+        statusText.style.color = 'red';
+        statusText.innerText = 'Could not connect to the backend database.';
+      } finally {
+        submitBtn.innerText = 'Send Enquiry 🌱';
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
 </body>
 
 </html>
