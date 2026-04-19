@@ -1003,6 +1003,73 @@
       font-size: 0.82rem;
     }
 
+    /* ── FAQ ── */
+    .faq {
+      background: var(--cream);
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(74, 124, 63, 0.1);
+      box-shadow: 0 4px 15px rgba(59, 42, 26, 0.03);
+      transition: all 0.3s;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 8px 25px rgba(59, 42, 26, 0.06);
+    }
+
+    .faq-item details {
+      width: 100%;
+    }
+
+    .faq-item summary {
+      padding: 22px 26px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--earth);
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--moss);
+      transition: transform 0.3s;
+    }
+
+    .faq-item details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-item .faq-content {
+      padding: 0 26px 22px;
+      font-size: 0.95rem;
+      color: var(--soil);
+      line-height: 1.65;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .hero-visual {
@@ -1099,7 +1166,8 @@
         <li><a href="#products">Products</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#testimonials">Reviews</a></li>
-        <li><a href="#contact" class="nav-cta">Order Now</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact" class="nav-cta">Contact Us</a></li>
       </ul>
       <div class="lang-toggle">
         <button class="lang-btn active" onclick="changeLanguage('en', this)">English</button>
@@ -1234,7 +1302,6 @@
           <p>Perfect for kitchen gardens, terrace plants, and small-scale home farming. Easy to use and store.</p>
           <div class="product-price">₹50</div>
           <div class="product-unit">per 5 kg bag</div>
-          <a href="#contact" class="btn-order">Order Now</a>
         </div>
       </div>
       <div class="product-card">
@@ -1246,7 +1313,6 @@
           <p>Ideal for small to medium farms. Consistent quality with bulk savings. Trusted by hundreds of farmers.</p>
           <div class="product-price">₹350</div>
           <div class="product-unit">per 50 kg bag</div>
-          <a href="#contact" class="btn-order">Order Now</a>
         </div>
       </div>
       <div class="product-card">
@@ -1375,14 +1441,72 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="faq-container">
+      <div class="faq-header">
+        <span class="section-label">Got Questions?</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      
+      <div class="faq-item">
+        <details>
+          <summary>What is Fauji-Agro Vermicompost?</summary>
+          <div class="faq-content">It is a premium, 100% organic fertilizer produced in our farm using natural earthworms. It safely processes organic matter into an extremely nutrient-rich superfood for your soil.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>How is it made?</summary>
+          <div class="faq-content">We use scientifically managed vermiculture beds where selected earthworms (Eisenia fetida) consume and break down organic materials, producing highly potent castings without the use of any harsh chemicals.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Can I use it for all types of plants?</summary>
+          <div class="faq-content">Yes! It is incredibly versatile and completely safe to use for home gardens, vegetable crops, flowering plants, lawns, nurseries, and large-scale agricultural farms.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>How much should I use?</summary>
+          <div class="faq-content">For potted plants, 1-2 handfuls around the roots once every month is sufficient. For farming and large crops, we typically recommend anywhere from 1 to 2 tonnes per acre during land preparation.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>Is it safe for children, pets, and edible plants?</summary>
+          <div class="faq-content">Absolutely. Since it's 100% natural, organic and free of synthetic chemicals, it is completely safe for your family, pets, and all fruits, vegetables, or herbs you intend to eat.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>How should I store it?</summary>
+          <div class="faq-content">Store it in a cool, dry place away from direct sunlight. To maintain the life of the beneficial microbes and retain moisture, properly seal the bag tightly after every use.</div>
+        </details>
+      </div>
+
+      <div class="faq-item">
+        <details>
+          <summary>How soon will I see results?</summary>
+          <div class="faq-content">You will typically start noticing greener leaves and healthier growth within 2 to 3 weeks, as the readily available nutrients and enzymes quickly integrate into the soil root systems.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section class="contact" id="contact">
-    <div class="contact-grid">
-      <div class="contact-info">
+    <div class="contact-grid" style="display: flex; justify-content: center; text-align: left;">
+      <div class="contact-info" style="max-width: 600px;">
         <span class="section-label">Get in Touch</span>
-        <h2 class="section-title">Order or Enquire Today</h2>
-        <p class="section-sub" style="margin-bottom: 40px;">Ready to transform your farm? Place an order, request a bulk
-          quote, or simply ask us anything.</p>
+        <h2 class="section-title">Reach Out to Us</h2>
+        <p class="section-sub" style="margin-bottom: 40px;">Ready to transform your farm? Contact us directly to place an order, request a bulk quote, or simply ask us anything.</p>
 
         <div class="contact-detail">
           <div class="contact-icon">📞</div>
@@ -1402,7 +1526,7 @@
           <div class="contact-icon">📍</div>
           <div>
             <h4>Farm Address</h4>
-            <p>Fauji Agro Enterprise<br>Village - Dahina District - Rewari, State - Haryana<br>
+            <p>Fauji Agro Enterprise<br>Village - Dahina,<br>District - Rewari,<br>State - Haryana<br>
             <a href="https://maps.app.goo.gl/HJz2N5p7yGizjCfv9" target="_blank" style="color: var(--moss); font-weight: 600; text-decoration: none; margin-top: 6px; display: inline-block;">🗺️ View on Google Maps</a></p>
           </div>
         </div>
@@ -1414,44 +1538,6 @@
           </div>
         </div>
       </div>
-
-      <form class="contact-form" id="orderForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" id="fullName" required placeholder="Your name">
-          </div>
-          <div class="form-group">
-            <label>Phone Number</label>
-            <input type="tel" id="phone" required placeholder="+91 XXXXX XXXXX">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" id="email" required placeholder="your@email.com">
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Product Interest</label>
-            <select id="productInterest" required>
-              <option>Home Garden Pack (5 kg)</option>
-              <option>Farm Pack (50 kg)</option>
-              <option>Bulk / Wholesale</option>
-              <option>Just Enquiring</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Quantity</label>
-            <input type="text" id="quantity" required placeholder="e.g. 10 bags / 500 kg">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea id="message" placeholder="Tell us about your farm, crop type, or any questions…"></textarea>
-        </div>
-        <button type="submit" class="btn-submit" id="submitBtn">Send Enquiry 🌱</button>
-        <p id="formStatus" style="font-size: 0.9rem; font-weight: bold; margin-top: 10px;"></p>
-      </form>
     </div>
   </section>
 
@@ -1521,51 +1607,7 @@
   </script>
   <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-  <script>
-    document.getElementById('orderForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      
-      const submitBtn = document.getElementById('submitBtn');
-      const statusText = document.getElementById('formStatus');
-      
-      submitBtn.innerText = 'Sending...';
-      submitBtn.disabled = true;
-      
-      const orderData = {
-        fullName: document.getElementById('fullName').value,
-        phone: document.getElementById('phone').value,
-        email: document.getElementById('email').value,
-        productInterest: document.getElementById('productInterest').value,
-        quantity: document.getElementById('quantity').value,
-        message: document.getElementById('message').value
-      };
 
-      try {
-        const response = await fetch('/api/orders', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(orderData)
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-          statusText.style.color = 'var(--moss)';
-          statusText.innerText = result.message;
-          document.getElementById('orderForm').reset();
-        } else {
-          statusText.style.color = 'red';
-          statusText.innerText = result.error || 'An error occurred.';
-        }
-      } catch (err) {
-        statusText.style.color = 'red';
-        statusText.innerText = 'Could not connect to the backend database.';
-      } finally {
-        submitBtn.innerText = 'Send Enquiry 🌱';
-        submitBtn.disabled = false;
-      }
-    });
-  </script>
 </body>
 
 </html>
